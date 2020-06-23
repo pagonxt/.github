@@ -1,0 +1,6 @@
+{
+    "name": "SDA Terraform",
+    "description": "E2E workflow using GitHub Actions to run Terraform within a Terraform Cloud workspace",
+    "iconName": "terraform",
+    "categories": null
+}
