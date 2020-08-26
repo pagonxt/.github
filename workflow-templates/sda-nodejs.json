@@ -1,0 +1,6 @@
+{
+    "name": "SDA Node.js",
+    "description": "Build and test a Node.js project with NPM, and publishes the package to GitHub Packages.",
+    "iconName": "nodejs",
+    "categories": null
+}
