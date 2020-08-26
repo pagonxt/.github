@@ -1,0 +1,45 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  release:
+    types:
+      - created
+
+jobs:
+     
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node.js version
+      uses: actions/setup-node@v2.1.1
+      with:
+        node-version: '12.x'
+        registry-url: https://npm.pkg.github.com/
+
+    - name: Clean install Node.js dependencies
+      run: npm ci
+    - name: Run Node.js tests
+      run: npm test
+    - name: Package Node.js module
+      run: npm pack
+      if: github.ref == 'refs/heads/master'
+    - name: Upload Node.js module
+      uses: actions/upload-artifact@v2
+      if: github.ref == 'refs/heads/master'
+      with:
+        path: ${{ github.workspace }}/*.tgz
+        if-no-files-found: error
+    - name: Release Node.js module
+      run: npm publish
+      if: github.event == 'release'
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
