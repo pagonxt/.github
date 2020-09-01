@@ -1,0 +1,98 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  release:
+    types:
+      - created
+
+jobs:
+  compile:
+    runs-on:  ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 8 ]
+    name: Java ${{ matrix.java }} compile
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup java
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+      - run: mvn -B --file pom.xml clean compile
+
+  build:
+    runs-on: ubuntu-latest
+    needs: compile
+    name: Build Maven project
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/cache@v2.1.1
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: Set up JDK 8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: Build and test project
+      run: mvn -B --file pom.xml clean verify
+    - uses: ashley-taylor/junit-report-annotations-action@master
+      with:
+        access-token: ${{ secrets.GITHUB_TOKEN }}
+      if: always()
+    - id: getfilename
+      run: echo "::set-output name=file::$(ls build/*.jar)"
+    - name: Upload Maven build artifact
+      uses: actions/upload-artifact@v2.1.4
+      with:
+        name: artifact
+        path: target/${{ steps.getfilename.outputs.file }}
+
+  docker:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Download Maven build artifact
+        uses: actions/download-artifact@v2.0.5
+        with:
+          name: artifact
+          path: artifact
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag localbuild/testimage:latest
+      - uses: anchore/scan-action@v1
+        with:
+          image-reference: "localbuild/testimage:latest"
+          dockerfile-path: "Dockerfile"
+          fail-build: true
+          acs-report-enable: true
+          #acs-report-severity-cutoff: "Medium"
+      - name: anchore inline scan JSON results
+        run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
+      - name: anchore action SARIF report
+        run: cat results.sarif
+      #- name: upload Anchore scan SARIF report
+      #  uses: github/codeql-action/upload-sarif@v1
+      #  with:
+      #    sarif_file: results.sarif
+      - name: Upload Anchore reports
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: anchore-reports
+          path: ./anchore-reports
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: ${{ github.repository }}/simple-service
+          tag_with_ref: true

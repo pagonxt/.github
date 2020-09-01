@@ -1,0 +1,6 @@
+{
+    "name": "SDA Maven",
+    "description": "Build and test a maven project with Java 8, dockerize it and publishes the docker to GitHub Packages.",
+    "iconName": "maven",
+    "categories": null
+}
