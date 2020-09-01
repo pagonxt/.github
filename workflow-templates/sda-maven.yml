@@ -10,6 +10,11 @@ on:
   release:
     types:
       - created
+      name: master - Test, Build & Redeploy
+
+env:
+  # TODO: Change variable to your image's name.
+  IMAGE_NAME: simple-service
 
 jobs:
   compile:
@@ -66,14 +71,20 @@ jobs:
         with:
           name: artifact
           path: artifact
+
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag  ${{ github.repository }}:latest
+        run: docker build . --file Dockerfile --tag  ${{ github.repository }}/$IMAGE_NAME
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
       - uses: anchore/scan-action@v1
         with:
-          image-reference: "${{ github.repository }}:latest"
+          image-reference: ${{ github.repository }}/simple-service:latest
           dockerfile-path: "Dockerfile"
           fail-build: true
           acs-report-enable: true
+
           #acs-report-severity-cutoff: "Medium"
       - name: anchore inline scan JSON results
         run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
@@ -88,11 +99,34 @@ jobs:
         with:
           name: anchore-reports
           path: ./anchore-reports
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: ${{ github.repository }}
-          tag_with_ref: true
+
+      - name: Push image
+        run: |
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "master" ] && VERSION=latest
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          echo IMAGE_NAME=$IMAGE_NAME
+
+          docker tag ${{ github.repository }}/$IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
+      #- name: Build and push Docker images
+      #  uses: docker/build-push-action@v1
+      #  with:
+      #    username: ${{ github.actor }}
+      #    password: ${{ secrets.GITHUB_TOKEN }}
+      #    registry: docker.pkg.github.com
+      #    repository: ${{ github.repository }}
+      #    tag_with_ref: true
