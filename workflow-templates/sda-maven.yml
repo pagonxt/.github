@@ -94,5 +94,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: ${{ github.repository }}/simple-service
+          repository: ${{ github.repository }}
           tag_with_ref: true
