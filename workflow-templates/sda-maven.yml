@@ -67,10 +67,10 @@ jobs:
           name: artifact
           path: artifact
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag localbuild/testimage:latest
+        run: docker build . --file Dockerfile --tag  ${{ github.repository }}:latest
       - uses: anchore/scan-action@v1
         with:
-          image-reference: "localbuild/testimage:latest"
+          image-reference: "${{ github.repository }}:latest"
           dockerfile-path: "Dockerfile"
           fail-build: true
           acs-report-enable: true
