@@ -1,6 +1,0 @@
-{
-    "name": "Deploy to Amazon ECS",
-    "description": "Configured to deploy to Waldocat's AWS account",
-    "iconName": "aws",
-    "categories": null
-}
