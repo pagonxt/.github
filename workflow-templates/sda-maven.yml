@@ -78,22 +78,26 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
-      - uses: anchore/scan-action@v1
+      - uses: anchore/scan-action@v1.0.8
         with:
-          image-reference: ${{ github.repository }}/simple-service:latest
+          image-reference: ${{ github.repository }}/${{ env.IMAGE_NAME }}:latest
           dockerfile-path: "Dockerfile"
           fail-build: true
           acs-report-enable: true
-
           #acs-report-severity-cutoff: "Medium"
+
+
       - name: anchore inline scan JSON results
         run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
       - name: anchore action SARIF report
         run: cat results.sarif
+
+      # quit comments if code scanning is enabled
       #- name: upload Anchore scan SARIF report
       #  uses: github/codeql-action/upload-sarif@v1
       #  with:
       #    sarif_file: results.sarif
+
       - name: Upload Anchore reports
         uses: actions/upload-artifact@v2.1.4
         with:
@@ -122,11 +126,3 @@ jobs:
 
           docker tag ${{ github.repository }}/$IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-      #- name: Build and push Docker images
-      #  uses: docker/build-push-action@v1
-      #  with:
-      #    username: ${{ github.actor }}
-      #    password: ${{ secrets.GITHUB_TOKEN }}
-      #    registry: docker.pkg.github.com
-      #    repository: ${{ github.repository }}
-      #    tag_with_ref: true
