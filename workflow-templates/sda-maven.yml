@@ -125,3 +125,23 @@ jobs:
 
           docker tag ${{ github.repository }}/$IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+          
+      - uses: Azure/aks-set-context@v1
+        
+        if: "github.event.release.prerelease"
+        with:
+            creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
+            resource-group: 'sdid1weursgglobalplat001'
+            cluster-name: 'sdid1weuaksgblplat001'
+
+        id: login
+
+      - uses: Azure/k8s-deploy@v1
+        if: "github.event.release.prerelease"
+        with:
+          namespace: 'github'
+          images: ${{ github.repository }}/$IMAGE_NAME $IMAGE_ID:$VERSION
+          imagepullsecrets: regcred
+          manifests: |
+              deployment.yaml
+              service.yaml
