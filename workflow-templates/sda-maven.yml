@@ -16,12 +16,15 @@ env:
   IMAGE_NAME: simple-service
   ANCHORE: true
   # TODO: Uncomment that you need
-  CLOUD: aks
-  # CLOUD: eks
+  ##### AKS #####
+  # CLOUD: aks
   # TODO: Uncomment and insert your data to deploy in azure
   #AKS_RESOURCE_GROUP: insert-resource-group
   #AKS_CLUSTER_NAME: insert-cluster-name
   #AKS_NAMESPACE: insert-namespace
+  
+  ##### EKS #####
+  # CLOUD: eks
   
 jobs:
   build:
