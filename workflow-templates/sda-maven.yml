@@ -76,11 +76,10 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
-      - uses: anchore/scan-action@v1
+      - uses: anchore/scan-action@v2
         if: env.ANCHORE == 'true'
         with:
-          image-reference: ${{ github.repository }}/${{ env.IMAGE_NAME }}:latest
-          dockerfile-path: "Dockerfile"
+          image: ${{ github.repository }}/${{ env.IMAGE_NAME }}:latest
           fail-build: false
           acs-report-enable: true
           debug: true
