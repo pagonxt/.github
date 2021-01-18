@@ -10,12 +10,3 @@ Hi there,
 Please explain the changes you made here and provide links to corresponding documentation if you have.
 
 -->
-
-## Related Issues
-
-<!--
-Are there any other GitHub issues (open or closed) or Pull Requests that should be linked here? For example:
-
-- #6017
-
--->
