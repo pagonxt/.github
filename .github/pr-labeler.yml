@@ -1,0 +1,6 @@
+feature: ['feature-*', 'feat-*']
+fix: fix-*
+improvement: improvement-*
+docs: docs-*
+refactor: refactor-*
+chore: chore-*
