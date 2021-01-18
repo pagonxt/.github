@@ -1,14 +1,13 @@
 ---
 name: "💡 Feature request"
 about: Submit your idea for a change in the codebase (a new feature or other enhancement).
-labels: labels
+labels: feature💡 and/or enhancement💡
 ---
 
 <!--
 Hi there,
 
 Thank you for opening an issue. Please note that we try to keep the issue tracker reserved for bug reports and feature requests. For general usage questions, please see the documentation.
-
 -->
 
 # Feature request
@@ -41,12 +40,8 @@ If you're not sure of some details, don't worry! When we evaluate the feature re
 
 ### Code sample
 
-<!--
-Please show how the new code could work, if doable.
--->
+<!-- Please show how the new code could work, if doable. -->
 
 ### References
 
-<!--
-please create a list below with links useful info and/or other GitHub issues, whether open or closed, that are related to the problem you've described above or to the suggested solution.
--->
+<!-- please create a list below with links useful info and/or other GitHub issues, whether open or closed, that are related to the problem you've described above or to the suggested solution. -->
