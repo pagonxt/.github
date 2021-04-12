@@ -1,5 +1,4 @@
-## Pull-Request-Process
-## Description
+## Pull-Request-Process. Description
 
 <!--
 Hi there,
