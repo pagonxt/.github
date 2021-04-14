@@ -1,0 +1,10 @@
+breaking: ['break-*', 'break/*', 'breaking/*', 'breaking-*']
+feature: ['feature/*', 'feat/*', 'feat-*', 'feature-*']
+fix: ['fix/*', 'fix-*','bugfix/*', 'bugfix-*', 'bug/*', 'bugfix-*', 'hotfix/*', 'hotfix-*']
+improvement: ['improvement-*', 'improvement/*']
+refactor: ['refactor/*', 'refactor-*']
+security: ['sec-*', 'sec/*', 'security-*', 'security/*']
+docs: ['docs/*', 'docs-*']
+chore: ['chore/*', 'chore-*']
+maintenance: ['maintenace-*', 'maintenance/*', 'enhance-*', enhance/*]
+fixed-branch: fixed-branch-name
