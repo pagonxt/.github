@@ -1,0 +1,6 @@
+{
+    "name": "SonarQube scan",
+    "description": "Scan your code with SonarQube",
+    "iconName": "sonarqube",
+    "categories": ["Code Scanning", "C", "C#", "C++", "Go", "Java", "JavaScript", "TypeScript", "PHP", "Python"]
+}
