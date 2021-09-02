@@ -1,0 +1,29 @@
+# Scan your code with SonarQube to detects Bugs, Vulnerabilities and Code Smells in up to 27 programming languages!
+#
+# Read more details about this workflow at https://github.com/SonarSource/sonarqube-scan-action
+# Read more information on how to analyze your code at https://docs.sonarqube.org/latest/analysis/github-integration/
+on:
+  # Trigger analysis when pushing in master or pull requests, and when creating
+  # a pull request. 
+  push:
+    branches:
+      - master
+  pull_request:
+      types: [opened, synchronize, reopened]
+
+name: Main Workflow
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
+      with:
+        projectBaseDir: .
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
