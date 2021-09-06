@@ -7,6 +7,6 @@ assignees: ''
 
 ---
 
-# Please follow the team name for these repo and project (optional, if you have more than un project for the same team)
+# Please complete with your team name for these repo
 Please, change 'Example' with your team name in ACR
 - Team: Example
