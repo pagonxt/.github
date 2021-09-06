@@ -1,7 +1,7 @@
 ---
-name: ACR access
+name: ":floppy_disk: ACR access"
 about: Give access to ACR to these repo
-title: ACR access
+title: ":floppy_disk: ACR access"
 labels: ''
 assignees: ''
 
