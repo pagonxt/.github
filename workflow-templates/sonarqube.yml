@@ -20,10 +20,21 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
+    # Get projectVersion. This is an example for Nodejs, adapt it to your needs and language
+    - name: Get project variables
+      id: vars
+      run: |
+        VERSION=`node -p "require('./package').version"`
+        echo "::set-output name=version::$VERSION"
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       with:
         projectBaseDir: .
+        args: >
+          -Dsonar.projectVersion=${{ steps.vars.outputs.version}}
+          -Dsonar.links.ci=${{ github.server_url }}/${{ github.repository }}/actions
+          -Dsonar.links.scm=${{ github.server_url }}/${{ github.repository }}
+          -Dsonar.links.issue=${{ github.server_url }}/${{ github.repository }}/issues
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
