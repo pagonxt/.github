@@ -11,7 +11,7 @@ on:
   pull_request:
       types: [opened, synchronize, reopened]
 
-name: Main Workflow
+name: SonarQube Scan
 jobs:
   sonarqube:
     runs-on: ubuntu-latest
