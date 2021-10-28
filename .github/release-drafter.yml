@@ -60,7 +60,7 @@ autolabeler:
       - 'breaking.*'
   - label: 'documentation'
     files:
-      - '*.md'
+      - '**/*.md'
     branch:
       - '/docs{0,1}\/.+/'
       - '/docs\/.+/'
