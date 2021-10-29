@@ -1,12 +1,19 @@
-## Pull-Request-Process. Description
+# PR PagoNxt
 
-<!--
-Hi there,
+## Description
 
-> REMEMBER: 
-> You must to prefix this PR with the corresponding prefix name: 
-> https://github.com/pagonxt/.github/tree/master/.github/ISSUE_TEMPLATE/CONTRIBUTING.md
+Please explain the changes you made here and link to any relevant issues.
 
-Please explain the changes you made here and provide links to corresponding documentation if you have.
+## Closes/fixes/resolves issue(s)?
 
--->
+## What was added/changed/fixed?
+
+## Others [Optional]
+
+## Checklist (after created PR)
+- [ ] Added reviewers
+- [ ] Added assignee(s)
+- [ ] Added label(s)
+- [ ] Added to project
+- [ ] Added to milestone
+- [ ] README.md has been updated after any changes to variables and outputs
