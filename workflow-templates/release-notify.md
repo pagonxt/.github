@@ -2,7 +2,7 @@
 
 ### Usage
 
-1. `MS_TEAMS_WEBHOOK_URI` is a PagoNxt organization secrets. Contain the webhook uri to send New Releases PagoNxt Channel. It is the [webhook URI](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook) of the dedicated Microsoft Teams channel for notification.
+1. `MS_TEAMS_WEBHOOK_URI` The webhook uri to send New Releases PagoNxt Channel. It is the [webhook URI](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook) of the dedicated Microsoft Teams channel for notification.
 
 2. Add a new `New Workflow` from Actions Tabs on your repository´s selecting Releases Notifier of Workflows created by PagoNxt list. Or Create new workflow file named 'release-notify.yml' with the code set out below:
 
