@@ -2,5 +2,5 @@
     "name": "Releases Notifier",
     "description": "Notify New Releases to Channels Teams",
     "iconName": "notifier",
-    "categories": null,
+    "categories": null
 }
