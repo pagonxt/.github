@@ -1,0 +1,26 @@
+name: Releases Notifier
+on:
+  release:
+    types: [ released ]
+jobs:
+  Post_New_Release_in_Teams:
+    runs-on: [ self-hosted, ubuntu-latest ]
+    steps:
+      - name: Get PagoNxt token for dependencies
+        id: dependencies
+        uses: getsentry/action-github-app-token@v1
+        with:
+          app_id: ${{ secrets.DEPENDENCIES_APP_ID }}
+          private_key: ${{ secrets.DEPENDENCIES_PRIVATE_KEY }}
+      - uses: actions/checkout@v2
+        with:
+          repository: pagonxt/gha-teams-notify
+          token: ${{ steps.dependencies.outputs.token }}
+          ref: main
+          path: actions/gha-teams-notify
+      - name: Send Notification to New Releases Channel
+        uses: ./actions/gha-teams-notify
+        if: always()
+        with:
+          github-token: ${{ github.token }}
+          webhook-uri:  ${{ secrets.MS_TEAMS_RELEASES_WEBHOOK_URI }}
