@@ -1,5 +1,14 @@
-name-template: 'v$RESOLVED_VERSION 🌈'
+ame-template: 'v$RESOLVED_VERSION 🌈'
+
 tag-template: 'v$RESOLVED_VERSION'
+
+template: |
+  ## Changes
+
+  $CHANGES
+
+  $CONTRIBUTORS
+
 categories:
   - title: '💣 Breaking Change'
     labels:
@@ -27,8 +36,11 @@ categories:
   - title: '⬆️ Dependencies'
     labels:
       - 'dependencies'
+
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
+
 version-resolver:
   major:
     labels:
@@ -50,25 +62,26 @@ version-resolver:
       - 'refactor'
       - 'tests'
   default: patch
+
 exclude-labels:
   - 'skip-changelog'
 
 autolabeler:
   - label: 'breaking'
     branch:
-      - 'break.*'
-      - 'breaking.*'
+      - '/break.*/'
+      - '/breaking.*/'
   - label: 'documentation'
     files:
       - '**/*.md'
     branch:
       - '/docs{0,1}\/.+/'
       - '/docs\/.+/'
-      - 'docs?.*'
+      - '/docs.*/'
   - label: 'tests'
     branch:
       - '/tests\/.+/'
-      - 'tests?.*'
+      - '/tests.*/'
   - label: 'chore'
     branch:
       - '/chore\/.+/'
@@ -76,22 +89,22 @@ autolabeler:
   - label: 'fix'
     branch:
       - '/fix\/.+/'
-      - 'fix.*'
-      - 'bugfix.*'
-      - 'bug.*'
-      - 'hot.*'
-      - 'hotfix.*'
-      - 'sec.*'
-      - 'security.*'
+      - '/fix.*/'
+      - '/bugfix.*/'
+      - '/bug.*/'
+      - '/hot.*/'
+      - '/hotfix.*/'
+      - '/sec.*/'
+      - '/security.*/'
     title:
       - '/fix/i'
   - label: 'feature'
     branch:
       - '/enh\/.+/'
       - '/enhancement\/.+/'
-      - 'feature.*'
-      - 'feat.*'
-      - 'improvement.*'
+      - '/feature.*/'
+      - '/feat.*/'
+      - '/improvement.*/'
     title:
       - '/feat/i'
   - label: 'dependencies'
@@ -101,11 +114,6 @@ autolabeler:
       #- 'vendor*'
     branch:
       - '/deps\/.+/'
-      - 'dependabot.*'
+      - '/dependabot.*/'
 
 filter-by-commitish: true
-
-template: |
-  ## Changes
-
-  $CHANGES
