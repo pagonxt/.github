@@ -1,6 +1,6 @@
 {
     "name": "PR Autolaberler & Releases Drafter",
-    "description": "Automate Drafts your next release notes as Pull Requests are merged into main brach.\r\nVersion Release be resolved automatically based on labels of individual pull requests.\r\nAppend the following file 'https://github.com/pagonxt/.github/blob/master/.github/release-drafter.yml' into your .github folder",
+    "description": "Automate Drafts your next release notes as Pull Requests are merged into main brach.\r\nVersion Release be resolved automatically based on labels of individual pull requests.\r\nAppend the following file 'https://github.com/pagonxt/.github/blob/master/.github/release-drafter.yml' into your .github folder.\r\n Oficial Project and Docs: https://github.com/release-drafter/release-drafter",
     "iconName": "release-drafter",
     "categories": null
 }
