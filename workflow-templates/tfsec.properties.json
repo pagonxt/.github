@@ -1,0 +1,6 @@
+{
+    "name": "TFSEC",
+    "description": "Run tfsec with reviewdog on pull requests to enforce security best practices. Reference: https://github.com/reviewdog/action-tfsec",
+    "iconName": "tfsec",
+    "categories": null
+}

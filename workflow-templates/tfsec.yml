@@ -1,0 +1,55 @@
+name: TFSEC
+on:
+  pull_request:
+    paths:
+      - "**/*.tf"
+      - "**/*.tfvars"
+      - ".github/workflows/*.y?ml"
+
+jobs:
+  Tfsec:
+    name: TFsec
+    # As the PR has triggers on PR label/unlabel, it could run on closed PRs. This IF prevents it.
+    if: github.event.pull_request.state == 'open' || github.event.action == 'closed'
+    runs-on: [ self-hosted, ubuntu-latest ]
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+      - name: Get PagoNxt token for dependencies
+        id: dependencies
+        uses: getsentry/action-github-app-token@v1
+        with:
+          app_id: ${{ secrets.DEPENDENCIES_APP_ID }}
+          private_key: ${{ secrets.DEPENDENCIES_PRIVATE_KEY }}
+      - name: Setup Github credentials
+        run: |
+          cat << EOF > "$(pwd)/.git/credentials"
+          https://x-access-token:$TOKEN@github.com
+          EOF
+          git config --system credential.helper "store --file=$(pwd)/.git/credentials"
+        env:
+          TOKEN: ${{ steps.dependencies.outputs.token }}
+      - name: Terraform Init
+        run: |
+          terraform init -input=false -backend=false
+      - name: Download TFSec Rules PagoNxt
+        run: |
+          curl -H 'Authorization: token ${{ steps.dependencies.outputs.token }}' \
+            -H 'Accept: application/vnd.github.v3.raw' \
+            -O \
+            -L https://api.github.com/repos/pagonxt/ccoe-alm-gov/contents/tfsec-config.yml
+      - name: Tfsec with Reviewdog output on the PR
+        uses: reviewdog/action-tfsec@c0a64a3f6600241486d87e46abb366ff34fe9f86
+        with:
+          github_token: ${{ secrets.github_token }}
+          # working_directory: my_directory           # Change working directory (default: '.')
+          level: warning                              # Get more output from reviewdog
+          reporter: github-pr-review                  # Change reviewdog reporter
+          filter_mode: nofilter                       # Check all files, not just the diff
+          fail_on_error: false                        # Fail action if errors are found
+          flags: -tee                                 # Add debug flag to reviewdog
+          tfsec_flags: "--force-all-dirs --config-file tfsec-config.yml" # Optional
+      - if: always()
+        run: |
+          git config --system --unset credential.helper
+          rm "$(pwd)/.git/credentials"
