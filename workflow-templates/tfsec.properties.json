@@ -1,0 +1,6 @@
+{
+    "name": "TFSEC",
+    "description": "Launch on CI process Security scanner for your Terraform code",
+    "iconName": "tfsec",
+    "categories": null
+}
