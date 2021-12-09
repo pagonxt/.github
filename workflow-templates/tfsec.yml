@@ -8,17 +8,10 @@ on:
       - synchronize
       - closed
       - unlabeled
-    branches:
-      - main
-      - master
     paths:
       - "**/*.tf"
       - "**/*.tfvars"
       - ".github/workflows/*.y?ml"
-env:
-  tf_target: "" # use this to deploy all modules
-  TERRAFORM_VERSION: "1.0.x"
-  TERRAFORM_DOCS_VERSION: "v0.12.1"
 
 jobs:
   Tfsec:
