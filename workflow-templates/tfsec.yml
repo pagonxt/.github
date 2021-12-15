@@ -9,8 +9,6 @@ on:
 jobs:
   Tfsec:
     name: TFsec
-    # As the PR has triggers on PR label/unlabel, it could run on closed PRs. This IF prevents it.
-    if: github.event.pull_request.state == 'open' || github.event.action == 'closed'
     runs-on: [ self-hosted, ubuntu-latest ]
     steps:
       - name: Clone repo
