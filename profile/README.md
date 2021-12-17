@@ -1,6 +1,9 @@
 ## PagoNxt 👋
 
-PagoNxt helps people and businesses prosper
+
+PagoNxt Santander´s new platform offers innovative payment solutions for merchants, businesses and consumers.
+
+Helps people and businesses prosper
 
 
 
