@@ -5,7 +5,7 @@ PagoNxt Santander´s new platform offers innovative payment solutions for mercha
 
 Helps people and businesses prosper
 
-
+https://www.pagonxt.com/who-we-are
 
 <!--
 
