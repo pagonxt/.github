@@ -7,6 +7,7 @@ Helps people and businesses prosper
 
 🧙 https://www.pagonxt.com 🧙
 
+<--
 **Here are some ideas to get you started:**
 
 🙋‍♀️ A short introduction - what is your organization all about?
