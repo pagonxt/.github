@@ -9,23 +9,5 @@ on:
       - master
 
 jobs:
-  Autolabeler_Pull_Requests:
-    if: github.event_name == 'pull_request'
-    runs-on: [ self-hosted, ubuntu-latest ]
-    steps:
-      - name: Pull Requests Autolabeler
-        uses: release-drafter/release-drafter@fe52e97d262833ae07d05efaf1a239df3f1b5cd4
-        with:
-          disable-releaser: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  Create_or_Update_Release_Draft:
-    if: github.event_name == 'push'
-    runs-on: [ self-hosted, ubuntu-latest ]
-    steps:
-      - name: Create/Update Release Drafter
-        uses: release-drafter/release-drafter@fe52e97d262833ae07d05efaf1a239df3f1b5cd4
-        with:
-          disable-autolabeler: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  release-drafter:
+    uses: pagonxt/workflows/.github/workflows/release-drafter-v1.yml@main
