@@ -5,7 +5,8 @@ on:
     types: [opened, reopened, synchronize]
   push:
     branches:
-      - $default-branch
+      - main
+      - master
 
 jobs:
   release-drafter:
