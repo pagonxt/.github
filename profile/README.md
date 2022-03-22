@@ -1,13 +1,12 @@
-## PagoNxt 👋
+## Hey, this is PagoNxt 👋
+**PagoNxt helps**
 
-
-PagoNxt Santander´s new platform offers innovative payment solutions for merchants, businesses and consumers.
-
-Helps people and businesses prosper
+**People and Businesses prosper**<br>
+**by delivering the best-in-class innovative payment solutions to our customers.**
 
 🧙 https://www.pagonxt.com 🧙
 
-PagoNxtALM Documentation
+**PagoNxtALM Documentation**
 
 👩‍💻 https://docs.alm.pagonxt.tech 👩‍💻
 
