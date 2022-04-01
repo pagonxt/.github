@@ -12,7 +12,7 @@
 
 **PagoNxtALM RFC**
 
-:fire: https://github.com/pagonxt/rfc :fire:
+:fire: https://pagonxt.github.io/rfc :fire:
 
 <!--
 **Here are some ideas to get you started:**
