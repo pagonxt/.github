@@ -6,14 +6,13 @@
 
 🧙 https://www.pagonxt.com 🧙
 
+**PagoNxt Community**
+
+:fire: https://community.pagonxt.tech/ :fire:
+
 **PagoNxtALM Documentation**
 
 👩‍💻 https://docs.alm.pagonxt.tech 👩‍💻
-
-**PagoNxtALM RFC**
-
-:fire: https://pagonxt.github.io/rfc :fire:
-
 <!--
 **Here are some ideas to get you started:**
 
