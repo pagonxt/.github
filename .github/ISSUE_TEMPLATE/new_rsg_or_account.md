@@ -10,13 +10,13 @@ Hi there,
 Thank you for opening an issue.
 -->
 
-# Feature New Resource Group request
+# Feature New Resource Group or Account request
 
 <!--
 This issue should serve for you to ask for a new Resource Group in Azure Cloud or a new Account in AWS Cloud 🤗
 -->
 
-### RSG Data
+### RSG/Account Data
 
 <!-- Information that is necessary to provide:
 
