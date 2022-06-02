@@ -24,12 +24,13 @@ To create a new Resource Group (Azure) or a new Account (AWS)
  
 AWS Account:
 
+
 We are starting the process to create the AWS Account for your project, please send us this information,
 
 •       AWS Account Name/Cost center:  Pagonext (PGX)
 •       Workload 6-char acronym:  xxxxxx (an account is created for each workload to host the applications, the acronym helps to identify the applications contained in it)
 •	Workload description: Having new Savings rules based on subscriptions. Having intelligent actions based on subscriptions behaviour.
-•       Regions (Locations): Dublin (air) &/OR London (lon)
+•       Regions (Locations): Dublin (air) &/OR London (ald)
 •       Account Tagging: (see Tagging - https://confluence.ci.gsnet.corp/display/OPTIMUM/Tagging)
 •       Channel: Internet
 •       Tracking code:  xxxxxx  ( you can use the 6-char workload acronym )
