@@ -13,4 +13,4 @@ Please, change 'Example' with your team name in ACR
 
 # ***NOTE:*** Launch the issue will create the follow scope maps in ACR:
 # <Team_Name>/<Repo_Name> used by containers images and helm/<Team_Name>/<Repo_Name> by charts
-# Too will create secrets called ACR_TOKEN ACR_USER in PRE github environmet yourself repository
+# Too will create secrets called ACR_TOKEN ACR_USER in PRE github environmet of own repository
