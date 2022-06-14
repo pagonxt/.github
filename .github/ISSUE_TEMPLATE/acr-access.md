@@ -10,3 +10,5 @@ assignees: ''
 # Please complete with your team name for these repo
 Please, change 'Example' with your team name in ACR
 - Team: Example
+
+# ***NOTE:*** Will Issue will create the follow scope maps in ACR: <Team_Name>/<Repo_Name> used by containers images && helm/<Team_Name>/<Repo_Name> by charts 
