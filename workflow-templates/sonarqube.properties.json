@@ -1,6 +1,0 @@
-{
-    "name": "SonarQube scan",
-    "description": "Scan your code with SonarQube",
-    "iconName": "sonarqube",
-    "categories": null
-}
